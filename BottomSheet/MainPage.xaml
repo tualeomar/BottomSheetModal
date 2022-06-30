@@ -13,11 +13,11 @@
         <Grid>
 
             <Grid HorizontalOptions="Center">
-                <Button Text="Tap Me!" Clicked="Button_Clicked" VerticalOptions="Center"/>
+                <Button Text="Tap Me!" Command="{Binding CommandOpenSheet}" VerticalOptions="Center"/>
             </Grid>
 
             <controls:BottomSheetControl x:Name="Sheet"
-                                         SheetHeight="300">
+                                         SheetHeight="300" IsPressed="{Binding IsOpenSheet}">
                 <controls:BottomSheetControl.SheetContent>
                     <StackLayout>
 

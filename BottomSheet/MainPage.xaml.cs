@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DarkIce.Toolkit.Core.Utilities;
+using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace BottomSheet
@@ -20,7 +20,7 @@ namespace BottomSheet
             }
             catch (Exception ex)
             {
-                ex.Log();
+                Debug.WriteLine(ex.Message);
             }
         }
     }

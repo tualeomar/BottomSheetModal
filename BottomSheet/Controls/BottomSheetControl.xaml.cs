@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
-using DarkIce.Toolkit.Core.Utilities;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -25,7 +25,7 @@ namespace BottomSheet.Controls
             }
             catch (Exception ex)
             {
-                ex.Log();
+                Debug.WriteLine(ex.Message);
             }
         }
 
@@ -58,6 +58,25 @@ namespace BottomSheet.Controls
         {
             get { return (View)GetValue(SheetContentProperty); }
             set { SetValue(SheetContentProperty, value); OnPropertyChanged(); }
+        }
+
+        public static readonly BindableProperty IsPressedProperty = BindableProperty.Create(nameof(IsPressed), typeof(bool),
+            typeof(BottomSheetControl), false,
+            propertyChanged: (bindable, oldVal, newVal) => ((BottomSheetControl)bindable).OnIsPressed());
+
+        private async void OnIsPressed()
+        {
+            if (BottomSheetRef.InputTransparent)
+            {
+                await OpenSheet();
+            }
+            else { await CloseSheet(); }
+        }
+
+        public bool IsPressed
+        {
+            get { return (bool)GetValue(IsPressedProperty); }
+            set { SetValue(IsPressedProperty, value); }
         }
 
         #endregion
@@ -94,7 +113,7 @@ namespace BottomSheet.Controls
             }
             catch (Exception ex)
             {
-                ex.Log();
+                Debug.WriteLine(ex.Message);
             }
         }
 
@@ -112,7 +131,7 @@ namespace BottomSheet.Controls
             }
             catch (Exception ex)
             {
-                ex.Log();
+                Debug.WriteLine(ex.Message);
             }
         }
 
@@ -130,7 +149,7 @@ namespace BottomSheet.Controls
             }
             catch (Exception ex)
             {
-                ex.Log();
+                Debug.WriteLine(ex.Message);
             }
         }
 
@@ -142,7 +161,7 @@ namespace BottomSheet.Controls
             }
             catch (Exception ex)
             {
-                ex.Log();
+                Debug.WriteLine(ex.Message);
             }
         }
     }
